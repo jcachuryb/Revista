@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:700');
+@import url('https://fonts.googleapis.com/css?family=Roboto+Condensed');
+
 /*! HTML5 Boilerplate v7.1.0 | MIT License | https://html5boilerplate.com/ */
 
 /* main.css 1.0.0 | MIT License | https://github.com/h5bp/main.css#readme */
@@ -101,7 +104,9 @@ textarea {
  /* ==========================================================================
    Author's custom styles
    ========================================================================== */
-
+.container * {
+    font-family: 'Roboto Condensed', sans-serif;
+}
 
 div.contenedor{
     background-image: url('../img/hugh.png');
@@ -167,25 +172,28 @@ body div.contenedor {
 
 #character {
 color: #12c5f0;
+font-size: 30px;
 }
 
 .no-around h3, .no-around h4, .no-around h5,
 .no-around h6 {
     line-height: 15px;
-    margin: 0px;
+    margin: 10px 0px;
 }
 
 h1.title {
     text-align: center;
     font-size: 114px;
-    margin: 0px 0px -4px ;
+    margin: 0px ;
     padding: 0px;
     line-height: 55px;
     color: #df2037;
 }
 
 .left .block h3{
-    font-size: 20px;
+    font-size: 43px;
+    font-weight: bold;
+    letter-spacing: -3px;
 }
 
 .left .block h3.main{
@@ -194,6 +202,7 @@ h1.title {
 
 .left .block h3.second{
     color: #f50431;
+    text-decoration: underline;
     
 }
 
@@ -205,6 +214,9 @@ h1.title {
     text-transform: capitalize;
 }
 
+.block{
+    padding: 1px;
+}
 
 
 
