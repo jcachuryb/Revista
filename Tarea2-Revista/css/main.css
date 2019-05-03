@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto:700');
 @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans');
 
 /*! HTML5 Boilerplate v7.1.0 | MIT License | https://html5boilerplate.com/ */
 
@@ -105,7 +106,7 @@ textarea {
    Author's custom styles
    ========================================================================== */
 .container * {
-    font-family: 'Roboto Condensed', sans-serif;
+    font-family: 'Open Sans Black', sans-serif;
 }
 
 div.contenedor{
@@ -173,12 +174,15 @@ body div.contenedor {
 #character {
 color: #12c5f0;
 font-size: 30px;
+width: max-content;
+line-height: 15px;
+margin: 1px 0px 21px;
 }
 
 .no-around h3, .no-around h4, .no-around h5,
 .no-around h6 {
     line-height: 15px;
-    margin: 10px 0px;
+    margin: 15px 0px;
 }
 
 h1.title {
@@ -191,9 +195,9 @@ h1.title {
 }
 
 .left .block h3{
-    font-size: 43px;
+    font-size: 58px;
     font-weight: bold;
-    letter-spacing: -3px;
+    letter-spacing: -5px;
 }
 
 .left .block h3.main{
@@ -202,8 +206,7 @@ h1.title {
 
 .left .block h3.second{
     color: #f50431;
-    text-decoration: underline;
-    
+    line-height: 45px;
 }
 
 .text-uppercase {
@@ -218,6 +221,50 @@ h1.title {
     padding: 1px;
 }
 
+.left .block {
+    width: 200px;
+}
+
+.container h5 {
+    color: #606e7b;
+    font-size: 20px;
+    letter-spacing: -1px;
+    line-height: 17px;
+}
+
+h5.no-around {
+    margin: 0px;
+}
+
+#guide {
+    
+    font-size: 80px;
+    letter-spacing: -6px;
+    font-weight: bold;
+    line-height: 61px;
+    background-color: yellow;
+    margin: 0px;
+}
+
+.lean {
+    transform-origin: 0 0;
+    transform: rotate(-6deg);
+}
+
+
+
+/* colors */
+.gray {
+    color: #81706a;
+}
+
+.gray2{
+    color: #96847d;
+}
+
+.dark-blue {
+    color: #35363a;
+}
 
 
 
