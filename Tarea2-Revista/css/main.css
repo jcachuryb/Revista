@@ -121,20 +121,27 @@ body div.contenedor {
     margin: auto;
 }
 
-.back-line{
+
+.lean {
+    transform-origin: 0 0;
+    transform: rotate(-10deg);
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.banner {
+    transform: translate(0, 0);
+}
+
+.banner > :first-child {
     position: fixed;
     width: 100%;
     z-index: -1;
     top: 18px;
     height: 16px;
-}
-
-.yellow {
     background: yellow;
-}
-
-.banner {
-    transform: translate(0, 0);
 }
 
 .banner h4 {
@@ -147,6 +154,14 @@ body div.contenedor {
 
 .banner h4 span {
     color: #f50431;
+}
+
+.contenedor > h6 {
+    
+    position: absolute;
+    top: 33px;
+    left: 118px;
+    font-size: 8px;
 }
 .container {
     display: inline-flex;
@@ -167,11 +182,8 @@ body div.contenedor {
 }
 
 
-.gray {
-    color: #6c6761;
-}
 
-#character {
+.left .block :first-child[name='character'] {
 color: #12c5f0;
 font-size: 30px;
 width: max-content;
@@ -179,7 +191,12 @@ line-height: 15px;
 margin: 1px 0px 21px;
 }
 
-.no-around h3, .no-around h4, .no-around h5,
+.no-around h3, .no-around h4 {
+    line-height: 22px;
+    margin: 15px 0px;
+}
+
+.no-around h5,
 .no-around h6 {
     line-height: 15px;
     margin: 15px 0px;
@@ -216,7 +233,40 @@ h1.title {
 .text-capitalize {
     text-transform: capitalize;
 }
+.no-margin h3, .no-margin h4, .no-margin h5,
+.no-margin h6 {
+    margin: 0px;
+}
 
+div.lean > span {
+    font-size: 80px;
+    line-height: 89px;
+}
+
+.lean:first-child {
+    background-color: #000;
+}
+
+h2.lean:not(:first-child) {
+    background-color: yellow;
+}
+
+h2.lean {
+    font-size: 80px;
+    letter-spacing: -6px;
+    font-weight: bold;
+    line-height: 61px;
+    margin: 0px;
+    width: fit-content;
+    font-style: italic;
+    padding: 2px 4px;
+}
+
+.lean h6 {
+    width: 152px;
+    font-size: 17px;
+    letter-spacing: -1px;
+}
 .block{
     padding: 1px;
 }
@@ -225,38 +275,98 @@ h1.title {
     width: 200px;
 }
 
-.container h5 {
-    color: #606e7b;
+.container .left h5 {
     font-size: 20px;
     letter-spacing: -1px;
     line-height: 17px;
 }
 
-h5.no-around {
+.left h5.no-around {
     margin: 0px;
 }
 
-#guide {
-    
-    font-size: 80px;
+
+.page {
+    font-size: 10px;
+}
+
+.right > .block:first-child h3 {
+    margin: 0px;
+
+}
+
+.right > .block:first-child :nth-child(2) {
+    font-size: 83px;
+    line-height: 65px;
     letter-spacing: -6px;
-    font-weight: bold;
-    line-height: 61px;
-    background-color: yellow;
+}
+
+.right > .block:first-child :first-child,
+.right > .block:first-child :last-child {
+    font-size: 34px;
+    line-height: 24px;
+    letter-spacing: -3px;
+
+}
+.right > .block:nth-child(2){
+    margin-top: 15px;
+    margin-bottom: 67px;
+}
+
+.right .second * {
+    margin: 0px;
+}
+.right .second h3{
+    line-height: 22px;
+    font-size: 28px;
+    letter-spacing: -1px;
+}
+
+.right .second h5{
+    line-height: 22px;
+    font-size: 19px;
+    letter-spacing: -2px;
+}
+
+.right .second h3:last-of-type{
+    font-size: 34px;
+}
+
+.right .block:nth-child(3) {
+    font-size: 20px;
+    background-color: #81706a;
+    text-align: left;
+    padding: 3px 10px 0px 12px;
+}
+
+.right .block:nth-child(3) * {
     margin: 0px;
 }
 
-.lean {
-    transform-origin: 0 0;
-    transform: rotate(-6deg);
+.right .block:nth-child(3) h5 {
+    font-size: 20px;
 }
 
+.right .block:nth-child(4) {
+    margin-top: 72px;
+    width: 158px;
+    float: right;
+}
+
+.right .block:nth-child(4) h6 {
+    margin: 0px;
+    text-align: left;
+    font-size: 7px;
+}
 
 
 /* colors */
 .gray {
     color: #81706a;
 }
+/* .gray {
+    color: #6c6761;
+} */
 
 .gray2{
     color: #96847d;
@@ -264,6 +374,13 @@ h5.no-around {
 
 .dark-blue {
     color: #35363a;
+}
+
+.white  {
+    color: #fff;
+}
+.black {
+    color: #000;
 }
 
 
