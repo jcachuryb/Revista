@@ -1,0 +1,86 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="apple-touch-icon" href="icon.png">
+  <!-- Place favicon.ico in the root directory -->
+
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/main.css">
+
+  <meta name="theme-color" content="#fafafa">
+</head>
+
+<body>
+  <!--[if IE]>
+    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+  <![endif]-->
+
+  <!-- Add your site or application content here -->
+
+  <h1>Juancalculator</h1>
+  <div class="calculator">
+    <header>
+      <div style="display: inline-flex;text-align: left;width: 100%;">
+        <h3 id="formerNumber"></h3>&nbsp;&nbsp;
+        <h4 id="operation"></h4>&nbsp;&nbsp;
+      </div>
+      <h2 id="display">0</h2>
+    </header>
+    <div class="buttons">
+      <div class="row">
+        <button onClick="reset()">R</button>
+        <button onClick="switchSign(this)">&#177;</button>
+        <button onClick="squareRoot(this)">&Sqrt;</button>
+        <button onClick="operation('/')">&divide;</button>
+      </div>
+      <div class="row">
+        <button onClick="keyPressed(this)">7</button>
+        <button onClick="keyPressed(this)">8</button>
+        <button onClick="keyPressed(this)">9</button>
+        <button onClick="operation('*')">&times;</button>
+      </div>
+      <div class="row">
+        <button onClick="keyPressed(this)">4</button>
+        <button onClick="keyPressed(this)">5</button>
+        <button onClick="keyPressed(this)">6</button>
+        <button onClick="operation('-')">&minus;</button>
+      </div>
+      <div class="row">
+        <button onClick="keyPressed(this)">1</button>
+        <button onClick="keyPressed(this)">2</button>
+        <button onClick="keyPressed(this)">3</button>
+        <button onClick="operation('+')">&plus;</button>
+      </div>
+      <div class="row">
+        <button onClick="keyPressed(this)">00</button>
+        <button onClick="keyPressed(this)">0</button>
+        <button onClick="keyPressed(this)">.</button>
+        <button onClick="solve()">&equals;</button>
+      </div>
+
+
+    </div>
+  </div>
+
+
+  <script src="js/vendor/modernizr-3.7.1.min.js"></script>
+  <script>window.jQuery || document.write('<script src="js/vendor/jquery-3.3.1.min.js"><\/script>')</script>
+  <script src="js/plugins.js"></script>
+  <script src="js/main.js"></script>
+
+  <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
+  <script>
+    window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
+    ga('create', 'UA-XXXXX-Y', 'auto'); ga('set', 'transport', 'beacon'); ga('send', 'pageview')
+  </script>
+  <script src="https://www.google-analytics.com/analytics.js" async defer></script>
+</body>
+
+</html>
