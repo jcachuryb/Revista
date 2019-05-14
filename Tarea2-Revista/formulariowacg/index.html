@@ -1,0 +1,75 @@
+<!DOCTYPE>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Form</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <form>
+        <fieldset>
+            <legend>Datos personales</legend>
+            <label for="nombre">Nombre completo:</label><br>
+            <input type="text" name="nombre" id="nombre" required aria-required="true"><br>
+
+            <label for="identificacion">N&uacute;mero de identificaci&oacute;n:</label><br>
+            <input type="text" name="identificacion" id="identificacion" required aria-required="true"><br>
+
+        </fieldset>
+        <fieldset>
+            <legend>Datos de contacto</legend>
+            <label for="telefono">N&uacute;mero celular:</label><br>
+            <input type="text" name="telefono" id="telefono" aria-describedby="expDesc" required aria-required="true"
+            pattern="\(\+\d{2}\)\d{7,10}"><br>
+            <span id="expDesc">(+##)##########</span><br>
+
+            <label for="direccion">Direcci&oacute;n:</label><br>
+            <input type="text" name="direccion" id="direccion"><br>
+        </fieldset>
+
+        <fieldset>
+            <legend>Datos de compra</legend>
+            <label >Motivo de compra:</label><br>
+            <input type="radio" id="efectivo" name="pago" value="a">
+            <label for="efectivo">Pago en efectivo</label><br />
+            <input type="radio" id="tarjeta-credito" name="pago" value="b">
+            <label for="tarjeta-credito">Tarjeta de cr&eacute;dito</label><br />
+            <input type="radio" id="tarjeta-debito" name="pago" value="c">
+            <label for="tarjeta-debito">Tarjeta de d&eacute;bito</label><br />
+            <input type="radio" id="cheque" name="pago" value="d">
+            <label for="cheque">Cheque</label><br />
+
+            <br>
+            <label for="nombre">Escoja un plan:</label><br>
+            <select id="planes" required aria-required="true">
+                <option value="">Ninguno</option>
+                <optgroup label="Planes b&aacute;sicos">
+                    <option value="pb1">1 vuelo al mes</option>
+                    <option value="pb2">2 vuelos al mes</option>
+                    <option value="pb3">3 vuelos al mes m&aacute;s recogida en aeropuerto</option>
+                </optgroup>
+                <optgroup label="Planes premium">
+                    <option value="pp1">4 vuelos al mes m&aacute;s noche en hotel</option>
+                    <option value="pp2">6 vuelos al mes m&aacute;s noche en hotel</option>
+                    <option value="pp3">10 vuelos al mes m&aacute;s noche en hotel</option>
+                </optgroup>
+            </select><br>
+        </fieldset>
+
+        <fieldset>
+            <legend>Confirmaci&oacute;</legend>
+
+            <label>
+                <input type="checkbox" id="terminos" required aria-required="true">
+                He leído, entiendo y acepto los t&eacute;rminos y codiciones
+            </label>
+            <br>
+            <input type="submit" type="Enviar" /> 
+        </fieldset>
+    </form>
+</body>
+
+</html>
