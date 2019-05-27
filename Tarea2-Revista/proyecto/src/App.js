@@ -25,7 +25,9 @@ class App extends React.Component {
           <Route exact path="/"
             render={props => <Ballot app={app} />}
           />
-          <Route path="/summary" component={Summary} />
+          <Route path="/summary"
+            render={props => <Summary app={app} />}
+          />
           <Route path="/login" component={LoginPage} />
         </div>
       </Router>
