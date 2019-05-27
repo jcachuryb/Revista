@@ -7,52 +7,23 @@ import {
   Redirect,
   withRouter
 } from "react-router-dom";
-import Ballot from './Pages/Ballot'
+import { observer } from 'mobx-react'
 import LoginPage, { Authentication } from './Pages/Login'
-import { Card, Col, Row } from "react-materialize/lib/";
+import Ballot from './Pages/Ballot';
 import Summary from "./Pages/Summary";
-import { observable, action, computed, extendObservable } from 'mobx';
 
 
 class App extends React.Component {
-
-  constructor(props) {
-    super(props);
-    extendObservable(this, {
-      candidates: [
-        { name: "Fry", votes: 1 },
-        { name: "Leela", votes: 3 },
-      ],
-      canVote: true,
-      onVote: (candidate) => {
-        var modelCandidate = this.candidates.filter(c => {
-          return c.name === candidate.name;
-        });
-        console.log(candidate)
-        console.log(modelCandidate)
-        if (modelCandidate != null) {
-          console.log("A vote for " + modelCandidate.name)
-          modelCandidate.votes += 1;
-        }
-      },
-      total: () => {
-        return this.candidates.reduce(function (sum, candidate) {
-          return sum + candidate.votes;
-        }, 0);
-      }
-    })
-  }
-
   render() {
 
-    const { candidates, onVote } = this;
+    const app = this.props.app;
     return (
       <Router>
         <div>
-          <Header candidates={candidates} />
+          <Header app={app} />
 
           <Route exact path="/"
-            render={props => <Ballot candidates={candidates} onVote={this.onVote} />}
+            render={props => <Ballot app={app} />}
           />
           <Route path="/summary" component={Summary} />
           <Route path="/login" component={LoginPage} />
@@ -63,25 +34,31 @@ class App extends React.Component {
 }
 
 
-function Header() {
-  return (
-    <nav>
-      <div class="nav-wrapper green">
-        <a href="#!" class="brand-logo right ">Elecciones 2020</a>
-        <ul class="left hide-on-med-and-down">
+const Header = observer(class Header extends React.Component {
+  render() {
+    const { app } = this.props;
+    return (
+      <nav>
+        <div className="nav-wrapper green">
+          <a href="#!" class="brand-logo right ">Elecciones 2020</a>
+          <ul className="left hide-on-med-and-down">
 
-          <li>
-            <Link to="/">Ballot</Link>
-          </li>
-          <li>
-            <Link to="/summary">Summary</Link>
-          </li>
+            <li>
+              <Link to="/">Ballot</Link>
+            </li>
+            <li>
+              <Link to="/summary">Summary</Link>
+            </li>
+            <li>
+              Votos: {app.totalVotes}
+            </li>
 
-        </ul>
-      </div>
-    </nav>
-  );
-}
+          </ul>
+        </div>
+      </nav>
+    );
+  }
+});
 
 function PrivateRoute({ component: Component, ...rest }) {
   return (

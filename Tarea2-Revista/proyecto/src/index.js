@@ -4,8 +4,11 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 import 'materialize-css/dist/css/materialize.css';
+import AppState from "./AppState";
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const app = new AppState();
+
+ReactDOM.render(<App app={app} />, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
