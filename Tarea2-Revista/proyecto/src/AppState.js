@@ -6,33 +6,25 @@ export default class AppState {
     is_loading = true;
     is_saving = false;
 
-    start = Date.now();
-    current = Date.now();
-
-    get elapsedTime() {
-        return this.current - this.start + "milliseconds";
-    }
-
-
     get totalVotes() {
-        // return this.candidates.reduce((aggregate, candidate) => {
-        //     return candidate.votes + aggregate;
-        // })
-        return this.candidates.filter(
-            candidate => candidate.votes > 0
-        ).length;
+        const candidatos = this.candidates.slice();
+        var sum = 0;
+        for (let idx = 0; idx < candidatos.length; idx++) {
+            sum += candidatos[idx].votes;
+        }
+        return sum;
     }
 
     onVote = (candidate) => {
         var modelCandidate = this.candidates.filter(c => {
-            return c.name === candidate.name;
+            return c.id === candidate.id;
         })[0];
         if (modelCandidate != null) {
             console.log("A vote for " + modelCandidate.name)
             modelCandidate.votes += 1;
             if (modelCandidate.votes % 5 === 0) {
                 this.candidates.push(
-                    { name: "Candidato" + modelCandidate.votes, votes: 0 }
+                    { name: "Candidato" + modelCandidate.votes, votes: 0, id: Math.random() * 100 }
                 )
             }
 
@@ -40,8 +32,8 @@ export default class AppState {
     }
     constructor() {
         this.candidates = [
-            { name: "Fry", votes: 1 },
-            { name: "Leela", votes: 3 },
+            { id: 1,  name: "Fry", votes: 1 },
+            { id: 2, name: "Leela", votes: 3 },
         ]
     }
 }
@@ -51,10 +43,5 @@ decorate(AppState, {
     is_loading: observable,
     is_saving: observable,
     totalVotes: computed,
-    
-    start: observable,
-    current: observable,
-    elapsedTime: computed,
-
     onVote: action
 });

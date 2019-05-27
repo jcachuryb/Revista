@@ -19,20 +19,21 @@ const Ballot = observer(class Ballot extends React.Component {
     render() {
         const { candidates } = this.props.app;
         return (<div>
-            <h3>This is the ballot paper</h3>
-            {candidates.map((candidate, idx) =>
+            <h3>El tarjet&oacute;n</h3>
+            <p>A continuaci&oacute;n, escoge el candidato que quieres como personero o personero este año.</p>
+            <div className="row">
+                {candidates.map((candidate, idx) =>
 
-                <div class="row">
                     <CandidateView candidate={candidate} onVote={this.vote} key={idx} />
-                </div>
-            )}
+                )}
+            </div>
 
         </div>);
     }
 });
 
 const CandidateView = observer(({ candidate, onVote }) => (
-    <div class="col  m3">
+    <div class="col m2">
         <div class="card">
             <div class="card-image">
                 <img src={sample} alt="logo" />
