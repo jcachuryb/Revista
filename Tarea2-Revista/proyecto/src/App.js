@@ -11,26 +11,32 @@ import { observer } from 'mobx-react'
 import LoginPage, { Authentication } from './Pages/Login'
 import Ballot from './Pages/Ballot';
 import Summary from "./Pages/Summary";
+import Footer from "react-materialize/lib/Footer";
+import BallotState from "./BallotState";
 
 
 class App extends React.Component {
   render() {
 
+    const ballotState = new BallotState();
+    ballotState.isVoting = false;
     const app = this.props.app;
     return (
-      <Router>
-        <div>
+      <div>
+        <Router>
           <Header app={app} />
+          <div>
 
-          <Route exact path="/"
-            render={props => <Ballot app={app} />}
-          />
-          <Route path="/summary"
-            render={props => <Summary app={app} />}
-          />
-          <Route path="/login" component={LoginPage} />
-        </div>
-      </Router>
+            <Route exact path="/"
+              render={props => <Ballot app={app} ballotState={ballotState} />}
+            />
+            <Route path="/summary"
+              render={props => <Summary app={app} />}
+            />
+            <Route path="/login" component={LoginPage} />
+          </div>
+        </Router>
+      </div>
     );
   }
 }
@@ -40,40 +46,44 @@ const Header = observer(class Header extends React.Component {
   render() {
     const { app } = this.props;
     return (
-      <nav>
-        <div className="nav-wrapper green">
-          <a href="#!" class="brand-logo right ">Elecciones 2020</a>
-          <ul className="left hide-on-med-and-down">
+      <header>
+        <nav>
+          <div className="nav-wrapper blue darken-2">
+            <a href="#!" class="brand-logo left ">
+            Bootcamp Favorites
+            <i class="material-icons large">code</i></a>
 
-            <li>
-              <Link to="/">Ballot</Link>
-            </li>
-            <li>
-              <Link to="/summary">Summary</Link>
-            </li>
-            <li>
-              Votos: {app.totalVotes}
-            </li>
+            <ul className="right hide-on-med-and-down">
 
-          </ul>
-        </div>
-      </nav>
+              <li>
+                <Link to="/">Ballot</Link>
+              </li>
+              <li>
+                <Link to="/summary">Summary</Link>
+              </li>
+              <li>
+                Votos: {app.totalVotes}
+              </li>
+
+            </ul>
+          </div>
+        </nav>
+      </header>
     );
   }
 });
 
-function PrivateRoute({ component: Component, ...rest }) {
+function AfterVotation({ component: Component, ...rest }) {
   return (
     <Route
       {...rest}
       render={props =>
-        Authentication.isAuthenticated ? (
+        props.app.open_elections ? (
           <Component {...props} />
         ) : (
             <Redirect
               to={{
-                pathname: "/login",
-                state: { from: props.location }
+                pathname: "/"
               }}
             />
           )

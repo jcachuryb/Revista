@@ -3,8 +3,9 @@ import { observable, action, computed, extendObservable, decorate } from 'mobx';
 
 export default class AppState {
     candidates = [];
-    is_loading = true;
-    is_saving = false;
+    open_elections = true;
+    
+    state;
 
     get totalVotes() {
         const candidatos = this.candidates.slice();
@@ -15,7 +16,7 @@ export default class AppState {
         return sum;
     }
 
-    onVote = (candidate) => {
+    onVote = (candidate, idNumber) => {
         var modelCandidate = this.candidates.filter(c => {
             return c.id === candidate.id;
         })[0];
@@ -32,16 +33,17 @@ export default class AppState {
     }
     constructor() {
         this.candidates = [
-            { id: 1,  name: "Fry", votes: 1 },
+            { id: 1, name: "Fry", votes: 1 },
             { id: 2, name: "Leela", votes: 3 },
-        ]
+        ];
+        this.state = 'on_course';
     }
 }
 
 decorate(AppState, {
+    state: observable,
     candidates: observable,
-    is_loading: observable,
-    is_saving: observable,
+    open_elections: observable,
     totalVotes: computed,
     onVote: action
 });

@@ -6,9 +6,20 @@ export class Summary extends React.Component {
 
 
     render() {
+        const { app } = this.props;
         return (
             <div>
-                <h3>This is the summary page</h3>
+                <div>
+                    <header>
+                        <h3>{app.state === 'on_course' ? 'Elecciones en curso' : 'Done'}</h3>
+
+                    </header>
+                    <div class="progress">
+                        <div class="indeterminate"></div>
+                    </div>
+
+                </div>
+
             </div>);
     }
 }
