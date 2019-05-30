@@ -1,7 +1,6 @@
 import React from 'react';
-import { Button } from "react-materialize/lib/";
-import { observer } from 'mobx-react'
-import sample from '../images/sample-1.jpg'
+import { observer } from 'mobx-react';
+import sample from '../images/sample-1.jpg';
 import VoteModal from './VoteModal';
 
 const Ballot = observer(class Ballot extends React.Component {
@@ -21,14 +20,17 @@ const Ballot = observer(class Ballot extends React.Component {
         const { ballotState } = this.props;
         return (<div>
             <header className="center">
-            <h3>El tarjet&oacute;n</h3>
-            <p>A continuaci&oacute;n, escoge el tema que más te interesó en el Bootcamp.</p>
+                <h3>El tarjet&oacute;n</h3>
+                <p>A continuaci&oacute;n, escoge el área que más le interesa en el mundo tecnológico.</p>
             </header>
-            <div className="row">
-                {candidates.map((candidate, idx) =>
+            <div className="container">
 
-                    <CandidateView candidate={candidate} onVote={this.vote} key={idx} />
-                )}
+                <div className="row">
+                    {candidates.map((candidate, idx) =>
+
+                        <CandidateView candidate={candidate} onVote={this.vote} key={idx} />
+                    )}
+                </div>
             </div>
             <VoteModal ballotState={ballotState} actionVote={this.props.app.onVote} />
         </div>);
@@ -36,11 +38,10 @@ const Ballot = observer(class Ballot extends React.Component {
 });
 
 const CandidateView = observer(({ candidate, onVote }) => (
-    <div class="col s3 m2">
+    <div class="col s12 m4 l3">
         <div class="card hoverable">
             <div class="card-image">
                 <img src={sample} alt="logo" />
-                <span class="card-title">{candidate.name}</span>
                 <button
                     class="btn-floating halfway-fab waves-effect waves-light red "
                     onClick={() => {
@@ -48,8 +49,7 @@ const CandidateView = observer(({ candidate, onVote }) => (
                     }}>Votar</button>
             </div>
             <div class="card-content">
-                <p>{candidate.description}</p>
-                <p>{candidate.votes} {candidate.votes === 1 ? 'vote' : 'votes'}</p>
+                <span class="card-title">{candidate.name}</span>
             </div>
         </div>
     </div>
