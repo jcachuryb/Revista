@@ -6,14 +6,13 @@ const VoteModal = observer(class VoteModal extends React.Component {
 
     modalInstance = null;
 
-    constructor(props) {
-        super(props);
-    }
-    
     componentDidMount() {
         var modalBlock = document.getElementById('modal1');
         this.modalInstance = M.Modal.init(modalBlock, {
-            dismissible: false
+            dismissible: false,
+            onOpenEnd : () => {
+                document.getElementById('idnumber').focus();
+            }
         });
         this.props.ballotState.onVotingBegins = this.onNewVote;
     }
@@ -34,7 +33,7 @@ const VoteModal = observer(class VoteModal extends React.Component {
         this.props.actionVote(ballotState.candidate, idNumber);
         ballotState.onVotingEnds();
         this.modalInstance.close();
-        M.toast({html: 'Voto registrado'})
+        M.toast({ html: 'Voto registrado' })
     }
 
     render() {
@@ -42,18 +41,19 @@ const VoteModal = observer(class VoteModal extends React.Component {
         return (
             <section>
 
-                <div id="modal1" class="modal">
-                    <div class="modal-content">
+                <div id="modal1" className="modal">
+                    <div className="modal-content">
                         <header className="center">
                             <h4>Confirmar el voto por {ballotState.candidate.name}</h4>
-                            <p>A continuación, diligencia tus datos para registrar tu voto</p>
+                            <p>Para confirmar tu voto, es necesario que ingreses tu número de documento</p>
                         </header>
                         <article>
-                            <div class="row">
-                                <form class="col s12">
-                                    <div class="row">
-                                        <div class="input-field col s12">
-                                            <input placeholder="Tarjeta de identidad, cédula, etc." id="idnumber" type="text" class="validate" />
+                            <div className="row">
+                                <form className="col s12">
+                                    <div className="row">
+                                        <div className="input-field col s12">
+                                            <i className="material-icons prefix">account_circle</i>
+                                            <input placeholder="Tarjeta de identidad, cédula, etc." id="idnumber" type="text" className="validate" />
                                             <label htmlFor="idnumber">Número de identificación</label>
                                         </div>
                                     </div>
@@ -62,7 +62,7 @@ const VoteModal = observer(class VoteModal extends React.Component {
                         </article>
 
                     </div>
-                    <div class="modal-footer">
+                    <div className="modal-footer">
                         <button onClick={ballotState.onVotingEnds} className="modal-close waves-effect waves-green btn-flat">Cancelar</button>
                         <button onClick={this.onVote} className="waves-effect waves-light btn">Confirmar voto</button>
                     </div>

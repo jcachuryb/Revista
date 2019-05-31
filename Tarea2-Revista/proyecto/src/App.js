@@ -1,18 +1,17 @@
-import React, { Component } from "react";
+import React from "react";
 import './App.css';
 import {
   BrowserRouter as Router,
   Route,
   Link,
-  Redirect,
   withRouter
 } from "react-router-dom";
 import { observer } from 'mobx-react'
-import LoginPage, { Authentication } from './Pages/Login'
-import Ballot from './Pages/Ballot';
-import Summary from "./Pages/Summary";
-import Footer from "react-materialize/lib/Footer";
+import LoginPage, { Authentication } from './Components/Login'
+import Ballot from './Components/Ballot';
+import Summary from "./Components/Summary";
 import BallotState from "./BallotState";
+import Timer from "./Components/Timer";
 
 
 class App extends React.Component {
@@ -49,20 +48,20 @@ const Header = observer(class Header extends React.Component {
       <header>
         <nav>
           <div className="nav-wrapper blue darken-2">
-            <a href="#!" class="brand-logo left ">
-            Bootcamp Favorites
-            <i class="material-icons large">code</i></a>
+            <span className="brand-logo left ">
+              Bootcampers <span className="text-red">Marvel</span> fav movies
+            <i className="material-icons large">code</i></span>
 
             <ul className="right hide-on-med-and-down">
 
               <li>
-                <Link to="/">Ballot</Link>
+                <Link to="/">Votación</Link>
               </li>
               <li>
-                <Link to="/summary">Summary</Link>
+                <Link to="/summary">Resultados</Link>
               </li>
-              <li>
-                Votos: {app.totalVotes}
+              <li className="blue darken-4">
+                <Timer app={app} />
               </li>
 
             </ul>
@@ -72,26 +71,6 @@ const Header = observer(class Header extends React.Component {
     );
   }
 });
-
-function AfterVotation({ component: Component, ...rest }) {
-  return (
-    <Route
-      {...rest}
-      render={props =>
-        props.app.open_elections ? (
-          <Component {...props} />
-        ) : (
-            <Redirect
-              to={{
-                pathname: "/"
-              }}
-            />
-          )
-      }
-    />
-  );
-}
-
 
 export const AuthButton = withRouter(
   ({ history }) =>

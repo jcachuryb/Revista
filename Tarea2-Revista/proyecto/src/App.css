@@ -31,3 +31,11 @@
     transform: rotate(360deg);
   }
 }
+
+.card .card-content {
+  height: 130px;
+}
+
+header nav ul li:last-child {
+  padding: 0px 11px;
+}

@@ -1,4 +1,4 @@
-import { observable, action, computed, decorate } from 'mobx';
+import { observable, action, decorate } from 'mobx';
 
 
 export default class BallotState {

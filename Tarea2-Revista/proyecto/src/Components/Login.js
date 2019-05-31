@@ -1,5 +1,5 @@
 import React from 'react';
-import { observable, action, computed, extendObservable } from 'mobx';
+import { extendObservable } from 'mobx';
 
 export const Authentication = {
     isAuthenticated: false,
