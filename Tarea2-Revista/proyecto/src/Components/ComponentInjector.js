@@ -16,8 +16,8 @@ export const ComponentInjector = observer(class ComponentInjector extends React.
                     if (app.state === "in_progress") {
                         if (this.props.view === "timer") {
                             return (
-                                <Fragment className="badge">
-                                    {app.getTimeRemaining != "" ? "Tiempo restante: " : ""}
+                                <Fragment>
+                                    {app.getTimeRemaining !== "" ? "Tiempo restante: " : ""}
                                     {app.getTimeRemaining}
                                 </Fragment>
                             );

@@ -1,5 +1,5 @@
-import { observable, action, computed, decorate } from 'mobx';
-
+import { action, computed, decorate, observable } from 'mobx';
+import DataService from './DataService';
 
 export default class AppState {
     candidates = [];
@@ -8,6 +8,7 @@ export default class AppState {
     state;
 
     intervalId;
+    dataService = new DataService();
 
     get totalVotes() {
         const candidatos = this.candidates.slice();
@@ -27,7 +28,7 @@ export default class AppState {
             modelCandidate.votes += 1;
 
             this.candidates = this.shuffleCandidatesArray(this.candidates);
-
+            return { success: true, message: "Voto registrado" };
         }
     }
 
@@ -43,7 +44,7 @@ export default class AppState {
         var hours = Math.floor((this.timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         var minutes = Math.floor((this.timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
         var seconds = Math.floor((this.timeRemaining % (1000 * 60)) / 1000);
-        if (days + hours + minutes + seconds == 0) {
+        if (days + hours + minutes + seconds === 0) {
             return "";
         } else {
             return (days > 0 ? days + " Día(s) " : "") + this.formatNumber(hours) + ":"
@@ -76,33 +77,25 @@ export default class AppState {
     }
 
     constructor() {
-        this.candidates = [
-            { id: 1, name: "Avengers: EndGame", votes: 0 },
-            { id: 2, name: "Avengers: Infinity war", votes: 0 },
-            { id: 3, name: "Black Panther", votes: 0 },
-            { id: 4, name: "The Incredible Hulk", votes: 0 },
-            { id: 5, name: "Guardians of the Galaxy", votes: 0 },
-            { id: 6, name: "Captain America: Civil War", votes: 0 },
-            { id: 7, name: "Doctor Strange", votes: 0 },
-            { id: 8, name: "Spider-Man: Homecoming", votes: 0 },
-            { id: 9, name: "Ant-man and The Wasp", votes: 0 },
-            { id: 10, name: "Iron Man", votes: 0 },
-            { id: 11, name: "Captain Marvel", votes: 0 },
-            { id: 12, name: "Thor: Ragnarok", votes: 0 },
-        ];
-        this.deadLine = new Date(2019, 5, 2, 23, 16, 0).getTime();
-        if (this.deadLine == null) {
-            this.state = 'initial';
-        } else {
-            if (this.deadLine < new Date().getTime()) {
-                this.state = 'finished';
+
+        this.dataService.fetchElectionData().then(data => {
+            
+            this.candidates = data.candidatos;
+            this.deadLine = data.fechaLimite;
+
+            if (this.deadLine == null) {
+                this.state = 'initial';
             } else {
-                this.intervalId = setInterval(() => {
-                    this.countDown();
-                }, 1000);
-                this.state = 'in_progress';
+                if (this.deadLine < new Date().getTime()) {
+                    this.state = 'finished';
+                } else {
+                    this.intervalId = setInterval(() => {
+                        this.countDown();
+                    }, 1000);
+                    this.state = 'in_progress';
+                }
             }
-        }
+        });
     }
 }
 

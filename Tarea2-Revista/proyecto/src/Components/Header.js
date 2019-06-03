@@ -19,14 +19,14 @@ export const Header = observer(class Header extends React.Component {
     
                 <ul className="right hide-on-med-and-down">
     
+                  <li className="blue darken-4">
+                    <Timer app={app} />
+                  </li>
                   <li>
-                    <Link to="/">Votación</Link>
+                    <Link to="/">Cartelera</Link>
                   </li>
                   <li>
                     <Link to="/summary">Resultados</Link>
-                  </li>
-                  <li className="blue darken-4">
-                    <Timer app={app} />
                   </li>
     
                 </ul>

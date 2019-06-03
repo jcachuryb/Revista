@@ -14,12 +14,13 @@ export const NoMatch = observer(class Header extends React.Component {
             <div class="card">
               <div class="card-content">
                 <span class="card-title">Página no encontrada :(</span>
-                <p> Quizá la página que estás buscando ha sido borrada o escribiste una URL equivocada
+                <p> Quizá la página que estás buscando ha sido borrada o escribiste mal la URL.
                   <br />
+                  Puedes continuar con alguna de las siguientes opciones 
                 </p>
               </div>
               <div class="card-action">
-                <Link to="/">Ir a la votación</Link>
+                <Link to="/">Ir a la cartelera de votación</Link>
                 <Link to="/summary">Ver los resultados</Link>
               </div>
             </div>

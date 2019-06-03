@@ -1,6 +1,6 @@
 import React from 'react';
 import { observer } from 'mobx-react';
-import VoteModal from './VoteModal';
+import { VoteModal } from './VoteModal';
 import { ComponentInjector } from './ComponentInjector';
 
 const Ballot = observer(class Ballot extends React.Component {

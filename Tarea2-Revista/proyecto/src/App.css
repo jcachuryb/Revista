@@ -36,6 +36,13 @@
   height: 130px;
 }
 
-header nav ul li:last-child {
+header nav ul li:first-child {
   padding: 0px 11px;
+}
+
+
+@media screen and (min-width: 800px) {
+  .candidate.ballot .card-image img {
+    height: 350px;
+  }
 }

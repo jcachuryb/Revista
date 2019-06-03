@@ -2,7 +2,7 @@ import React from 'react';
 import { observer } from 'mobx-react'
 import * as M from "materialize-css";
 
-const VoteModal = observer(class VoteModal extends React.Component {
+export const VoteModal = observer(class VoteModal extends React.Component {
 
     modalInstance = null;
 
@@ -11,7 +11,8 @@ const VoteModal = observer(class VoteModal extends React.Component {
         this.modalInstance = M.Modal.init(modalBlock, {
             dismissible: false,
             onOpenEnd : () => {
-                document.getElementById('idnumber').focus();
+                // document.getElementById('idnumber').focus();
+                return;
             }
         });
         this.props.ballotState.onVotingBegins = this.onNewVote;
@@ -31,7 +32,7 @@ const VoteModal = observer(class VoteModal extends React.Component {
         const { ballotState } = this.props;
 
         this.props.actionVote(ballotState.candidate, idNumber);
-        ballotState.onVotingEnds();
+        var result = ballotState.onVotingEnds();
         this.modalInstance.close();
         M.toast({ html: 'Voto registrado' })
     }
@@ -40,7 +41,6 @@ const VoteModal = observer(class VoteModal extends React.Component {
         const { ballotState } = this.props;
         return (
             <section>
-
                 <div id="modal1" className="modal">
                     <div className="modal-content">
                         <header className="center">
@@ -76,6 +76,3 @@ const VoteModal = observer(class VoteModal extends React.Component {
         );
     }
 });
-
-
-export default VoteModal;
