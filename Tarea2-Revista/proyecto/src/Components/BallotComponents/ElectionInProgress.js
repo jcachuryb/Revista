@@ -1,6 +1,7 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 import { CandidateView } from './CandidateView';
+
 export const ElectionInProgressBallot = observer(class ElectionInProgress extends React.Component {
     vote = candidate => {
         const { ballotState } = this.props;

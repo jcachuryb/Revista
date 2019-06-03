@@ -43,8 +43,12 @@ export default class AppState {
         var hours = Math.floor((this.timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         var minutes = Math.floor((this.timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
         var seconds = Math.floor((this.timeRemaining % (1000 * 60)) / 1000);
-        return (days > 0 ? days + " Día(s) " : "") + hours + ":"
-            + this.formatNumber(minutes) + ":" + this.formatNumber(seconds);
+        if (days + hours + minutes + seconds == 0) {
+            return "";
+        } else {
+            return (days > 0 ? days + " Día(s) " : "") + this.formatNumber(hours) + ":"
+                + this.formatNumber(minutes) + ":" + this.formatNumber(seconds);
+        }
     }
 
     formatNumber(number) {
@@ -86,7 +90,7 @@ export default class AppState {
             { id: 11, name: "Captain Marvel", votes: 0 },
             { id: 12, name: "Thor: Ragnarok", votes: 0 },
         ];
-        this.deadLine = new Date(2019, 5, 2, 18, 49, 0).getTime();
+        this.deadLine = new Date(2019, 5, 2, 23, 16, 0).getTime();
         if (this.deadLine == null) {
             this.state = 'initial';
         } else {

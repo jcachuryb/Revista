@@ -53,7 +53,12 @@ const VoteModal = observer(class VoteModal extends React.Component {
                                     <div className="row">
                                         <div className="input-field col s12">
                                             <i className="material-icons prefix">account_circle</i>
-                                            <input placeholder="Tarjeta de identidad, cédula, etc." id="idnumber" type="text" className="validate" />
+                                            <input placeholder="Tarjeta de identidad, cédula, etc." 
+                                                aria-label="Tarjeta de identidad, cédula, etc."
+                                                aria-required="true"
+                                                id="idnumber" 
+                                                type="text" 
+                                                className="validate" />
                                             <label htmlFor="idnumber">Número de identificación</label>
                                         </div>
                                     </div>
