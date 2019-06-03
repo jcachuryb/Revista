@@ -83,8 +83,10 @@ export default class AppState {
             { id: 8, name: "Spider-Man: Homecoming", votes: 0 },
             { id: 9, name: "Ant-man and The Wasp", votes: 0 },
             { id: 10, name: "Iron Man", votes: 0 },
+            { id: 11, name: "Captain Marvel", votes: 0 },
+            { id: 12, name: "Thor: Ragnarok", votes: 0 },
         ];
-        this.deadLine = new Date(2019, 4, 30, 23, 49, 0).getTime();
+        this.deadLine = new Date(2019, 5, 2, 18, 49, 0).getTime();
         if (this.deadLine == null) {
             this.state = 'initial';
         } else {
