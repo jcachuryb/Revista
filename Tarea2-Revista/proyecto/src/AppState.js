@@ -39,6 +39,9 @@ export default class AppState {
         if (this.timeRemaining < 0) {
             clearInterval(this.intervalId);
             this.state = 'finished';
+            this.dataService.fetchResults().then(data => {
+                this.candidates = data.candidatos;
+            });
         }
     }
     get getTimeRemaining() {
