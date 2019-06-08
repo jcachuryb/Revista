@@ -10,8 +10,8 @@ export const VoteModal = observer(class VoteModal extends React.Component {
         var modalBlock = document.getElementById('modal1');
         this.modalInstance = M.Modal.init(modalBlock, {
             dismissible: false,
-            onOpenEnd : () => {
-                // document.getElementById('idnumber').focus();
+            onOpenEnd: () => {
+                document.getElementById('idnumber').focus();
                 return;
             }
         });
@@ -25,16 +25,23 @@ export const VoteModal = observer(class VoteModal extends React.Component {
 
     onVote = () => {
         let idNumber = document.getElementById('idnumber').value;
-        if (idNumber.length < 3) {
+        if (!/^([A-Za-z0-9]{4,12})$/.test(idNumber)) {
+            alert("El número de identidad debe contener sólamente números y letras.")
             return;
         }
 
         const { ballotState } = this.props;
 
-        this.props.actionVote(ballotState.candidate, idNumber);
-        var result = ballotState.onVotingEnds();
-        this.modalInstance.close();
-        M.toast({ html: 'Voto registrado' })
+        this.props.actionVote(ballotState.candidate, idNumber).then(res => {
+            if (res.success) {
+                this.modalInstance.close();
+                M.toast({ html: res.message })
+                var result = ballotState.onVotingEnds();
+
+            } else {
+                alert(res.message);
+            }
+        });
     }
 
     render() {
@@ -49,27 +56,29 @@ export const VoteModal = observer(class VoteModal extends React.Component {
                         </header>
                         <article>
                             <div className="row">
-                                <form className="col s12">
-                                    <div className="row">
-                                        <div className="input-field col s12">
-                                            <i className="material-icons prefix">account_circle</i>
-                                            <input placeholder="Tarjeta de identidad, cédula, etc." 
-                                                aria-label="Tarjeta de identidad, cédula, etc."
-                                                aria-required="true"
-                                                id="idnumber" 
-                                                type="text" 
-                                                className="validate" />
-                                            <label htmlFor="idnumber">Número de identificación</label>
-                                        </div>
-                                    </div>
-                                </form>
+                                <div className="input-field col s12">
+                                    <i className="material-icons prefix">account_circle</i>
+                                    <input placeholder="Tarjeta de identidad, cédula, etc."
+                                        aria-label="Tarjeta de identidad, cédula, etc."
+                                        aria-required="true"
+                                        id="idnumber"
+                                        type="text"
+                                        maxLength="12"
+                                        className="validate"
+                                        onKeyDown={e => {
+                                            if (e.keyCode === 13) {
+                                                this.onVote();
+                                            }
+                                        }} />
+                                    <label htmlFor="idnumber">Número de identificación</label>
+                                </div>
                             </div>
                         </article>
 
                     </div>
                     <div className="modal-footer">
-                        <button onClick={ballotState.onVotingEnds} className="modal-close waves-effect waves-green btn-flat">Cancelar</button>
-                        <button onClick={this.onVote} className="waves-effect waves-light btn">Confirmar voto</button>
+                        <button type="button" onClick={ballotState.onVotingEnds} className="modal-close waves-effect waves-green btn-flat">Cancelar</button>
+                        <button type="button" onClick={this.onVote} className="waves-effect waves-light btn">Confirmar voto</button>
                     </div>
                 </div>
             </section>

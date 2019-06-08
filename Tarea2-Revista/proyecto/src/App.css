@@ -46,3 +46,17 @@ header nav ul li:first-child {
     height: 350px;
   }
 }
+
+
+.fetching-loader {
+  text-align: center;
+  padding-top: 200px;
+}
+
+div.scale-in {
+  width: 100px;
+  height: 100px;
+  background: red;
+  -webkit-transition: width 2s; /* Safari */
+  transition: width 2s;
+}

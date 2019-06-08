@@ -13,6 +13,25 @@ export const ComponentInjector = observer(class ComponentInjector extends React.
         return (<div>
             {
                 (() => {
+                    if (app.isBusy && this.props.view !== "timer") {
+                        return (
+                            <div className="fetching-loader">
+                                <div className="preloader-wrapper big active">
+                                    <div className="spinner-layer spinner-blue-only">
+                                        <div className="circle-clipper left">
+                                            <div className="circle"></div>
+                                        </div><div className="gap-patch">
+                                            <div className="circle"></div>
+                                        </div>
+                                        <div className="circle-clipper right">
+                                            <div className="circle"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        );
+                    }
+
                     if (app.state === "in_progress") {
                         if (this.props.view === "timer") {
                             return (
@@ -38,11 +57,11 @@ export const ComponentInjector = observer(class ComponentInjector extends React.
                                     null
                                 );
                             }
-    
+
                             if (this.props.view === "ballot") {
                                 return (<ElectionFinishedBallot app={app} />);
                             }
-    
+
                             if (this.props.view === "summary") {
                                 return (<Results candidates={this.props.copyOfCandidates} />);
                             }
@@ -52,7 +71,7 @@ export const ComponentInjector = observer(class ComponentInjector extends React.
                                     null
                                 );
                             }
-    
+
                             return (<h2>Ups, no hay votaciones definidas</h2>);
                         }
                     }

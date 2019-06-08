@@ -3,7 +3,7 @@ import DataService from './DataService';
 
 export default class AppState {
     candidates = [];
-    open_elections = true;
+    isBusy = true;
     timeRemaining = 0;
     state;
 
@@ -23,13 +23,15 @@ export default class AppState {
         var modelCandidate = this.candidates.filter(c => {
             return c.id === candidate.id;
         })[0];
-        if (modelCandidate != null) {
-            console.log("A vote for " + modelCandidate.name)
-            modelCandidate.votes += 1;
+        return this.dataService.vote(modelCandidate.id, idNumber).then(res => {
+            console.log(res.mensaje)
+            if (res.valid) {
+                this.candidates = this.shuffleCandidatesArray(this.candidates);
+            }
+            return { success: res.valid, message: res.mensaje };
+        })
 
-            this.candidates = this.shuffleCandidatesArray(this.candidates);
-            return { success: true, message: "Voto registrado" };
-        }
+
     }
 
     countDown = () => {
@@ -77,9 +79,9 @@ export default class AppState {
     }
 
     constructor() {
-
+        this.isBusy = true;
         this.dataService.fetchElectionData().then(data => {
-            
+
             this.candidates = data.candidatos;
             this.deadLine = data.fechaLimite;
 
@@ -95,6 +97,9 @@ export default class AppState {
                     this.state = 'in_progress';
                 }
             }
+            this.isBusy = false;
+        }).catch(err => {
+            this.isBusy = false;
         });
     }
 }
@@ -102,7 +107,7 @@ export default class AppState {
 decorate(AppState, {
     state: observable,
     candidates: observable,
-    open_elections: observable,
+    isBusy: observable,
     timeRemaining: observable,
 
     onVote: action,

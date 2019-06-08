@@ -2,7 +2,8 @@ import { fetch as fetchPolyfill } from 'whatwg-fetch'
 
 export default class DataService {
 
-    endpoint = "http://localhost:8080/";
+    endpoint = "https://eleccionesjs.herokuapp.com/";
+    // endpoint = "http://localhost:5000/";
     setUpElection(date) {
         return this.post('preparElecciones', { fecha: date });
     }
