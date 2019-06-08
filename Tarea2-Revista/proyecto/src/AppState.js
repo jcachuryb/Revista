@@ -28,6 +28,13 @@ export default class AppState {
             if (res.valid) {
                 this.candidates = this.shuffleCandidatesArray(this.candidates);
             }
+            try {
+                if (res.new_state === "finished") {
+                    this.state = 'finished';
+                }
+            } catch (error) {
+
+            }
             return { success: res.valid, message: res.mensaje };
         })
 

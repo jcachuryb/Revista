@@ -11,6 +11,7 @@ import Summary from "./Components/Summary";
 import BallotState from "./BallotState";
 import { Header } from "./Components/Header";
 import { NoMatch } from "./Components/404";
+import { Home } from "./Components/Home";
 
 
 class App extends React.Component {
@@ -27,6 +28,9 @@ class App extends React.Component {
 
             <Switch>
               <Route exact path="/"
+                render={props => <Home app={app} ballotState={ballotState} />}
+              />
+              <Route exact path="/ballot"
                 render={props => <Ballot app={app} ballotState={ballotState} />}
               />
               <Route path="/summary"

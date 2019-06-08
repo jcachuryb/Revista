@@ -34,14 +34,19 @@ export const VoteModal = observer(class VoteModal extends React.Component {
 
         this.props.actionVote(ballotState.candidate, idNumber).then(res => {
             if (res.success) {
-                this.modalInstance.close();
+                this.cancel();
                 M.toast({ html: res.message })
-                var result = ballotState.onVotingEnds();
-
+                
             } else {
                 alert(res.message);
             }
         });
+    }
+    
+    cancel = () => {
+        const { ballotState } = this.props;
+        this.modalInstance.close();
+        var result = ballotState.onVotingEnds();
     }
 
     render() {
@@ -68,6 +73,9 @@ export const VoteModal = observer(class VoteModal extends React.Component {
                                         onKeyDown={e => {
                                             if (e.keyCode === 13) {
                                                 this.onVote();
+                                            }
+                                            if (e.keyCode === 27) {
+                                                this.cancel();
                                             }
                                         }} />
                                     <label htmlFor="idnumber">Número de identificación</label>

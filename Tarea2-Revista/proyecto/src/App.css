@@ -60,3 +60,8 @@ div.scale-in {
   -webkit-transition: width 2s; /* Safari */
   transition: width 2s;
 }
+
+
+.parallax-container div img {
+  width: -webkit-fill-available;
+}

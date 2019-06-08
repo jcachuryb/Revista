@@ -20,7 +20,8 @@ export const NoMatch = observer(class Header extends React.Component {
                 </p>
               </div>
               <div class="card-action">
-                <Link to="/">Ir a la cartelera de votación</Link>
+                <Link to="/">Inicio</Link>
+                <Link to="/ballot">Cartelera de votación</Link>
                 <Link to="/summary">Ver los resultados</Link>
               </div>
             </div>
